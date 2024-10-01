@@ -1,0 +1,63 @@
+{% extends "home.html" %}
+
+{% block title %}
+    <title>Pvrcblog</title>
+{% endblock title %}
+
+{% block content %}
+ <center style="margin: 15px;">User Id :{{ request.user }}</center>
+    <center>
+        <table border="1" cellpadding="10" cellspacing="0" style="width: 80%; margin: auto; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>USERNAME</th>
+                    <th>Full Name</th>
+                    <th>Image</th>
+                    <th>Video</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.username }}</td>
+                        <td>
+                            <!--<marquee behavior="scroll" direction="left" scrollamount="5" style="color: red;">-->
+                                <h1>{{ post.fullname }}</h1>
+                           <!-- </marquee>-->
+                           <h6><B>created at: </B>&nbsp;</h6> {{ post.create_at }}
+                        </td>
+                        <td>
+                            {% if post.img %}
+                                <img src="{{ post.img.url }}" height="100" width="100" alt="photo">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if post.video %}
+                                <video width="100" height="100" controls>
+                                    <source src="{{ post.video.url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% endif %}
+                        </td>
+                        <td>{{ post.dateofbarth }}</td>
+                        <td>{{ post.gender }}</td>
+                        <td>{{ post.phone }}</td>
+                        <td>{{ post.email }}</td>
+                        <td>
+                            <button style="background-color: red; text-align: center ; text-decoration-color: white; "><a href="{% url 'contact' post.id %}">delete</a></button><br>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button style="background-color: rgb(213, 224, 52); text-align: center; text-decoration-color: white;"><a href="{% url 'update' post.id %}">update</a></button>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+{% endblock content %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PVLCBLOG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: lightcoral; /* light red */
+            padding: 10px;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+        }
+
+        .navbar a:hover {
+            background-color: lightblue; /* light blue */
+            border-radius: 5px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .navbar-right button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: lightblue; /* light blue */
+            color: white;
+            cursor: pointer;
+        }
+
+        .navbar-right button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+           <!-- <a href="{% url 'pvrcblog' %}">Pvrcblog</a>-->
+            <a href="{% url 'home' %}">Home</a>
+            <!-- Provide a default link for 'about' without an 'id' parameter -->
+            
+           <a href="{% url 'signin' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'down' %}">Download</a>
+            
+
+
+           
+
+
+        </div>
+        <div class="navbar-right">
+            <input type="text" placeholder="Search...">
+            <button type="button">Search</button>
+        </div>
+    </nav>
+
+
+    
+
+        {% block content %}
+
+       <center> 
+        <b style="color: red;font-size: x-large; text-align: center;">WELCOME TO OUR BLOG </b>
+        </center>
+        <center><b><h1>{{ time }}</h1></b>
+            <script type="text/javascript">
+                function autoRefresh() {
+                    window.location.reload();
+                }
+        
+                setInterval(autoRefresh, 500000); // Refresh every 5000 milliseconds (5 seconds)
+            </script></center>
+        {%endblock content%}
+
+    
+</body>
+</html>

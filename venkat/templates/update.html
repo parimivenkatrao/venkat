@@ -1,0 +1,51 @@
+
+{% extends "home.html" %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update Post</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px;">
+    <h2 style="text-align: center; color: #333;">update Post</h2>
+    <form method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;">
+        {% csrf_token %}
+        <label for="fullname" style="display: block; margin-bottom: 5px; font-weight: bold;">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="dateofbarth" style="display: block; margin-bottom: 5px; font-weight: bold;">Date of Birth:</label>
+        <input type="date" id="dateofbarth" name="dateofbarth" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="gender" style="display: block; margin-bottom: 5px; font-weight: bold;">Gender:</label>
+        <select id="gender" name="gender" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+
+        <label for="phone" style="display: block; margin-bottom: 5px; font-weight: bold;">Phone:</label>
+        <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+        <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="img" style="display: block; margin-bottom: 5px; font-weight: bold;">Image:</label>
+        <input type="file" id="img" name="img" style="margin-bottom: 20px;">
+
+        <label for="video" style="display: block; margin-bottom: 5px; font-weight: bold;">Video:</label>
+        <input type="file" id="video" name="video" style="margin-bottom: 20px;">
+
+        <label for="create_at" style="display: block; margin-bottom: 5px; font-weight: bold;">Created At:</label>
+        <input type="date" id="create_at" name="create_at" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="is_published" style="font-weight: bold;">Published:</label>
+        <input type="checkbox" id="is_published" name="is_published" checked style="margin-bottom: 20px;">
+
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+    </form>
+</body>
+</html>
+{% endblock content %}

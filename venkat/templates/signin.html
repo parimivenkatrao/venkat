@@ -1,0 +1,93 @@
+{% extends "home.html" %}
+
+{% block title %}
+<title>Login Page</title>
+{% endblock title %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+        .feedback {
+            color: green;
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const usernameError = document.getElementById('username-error');
+            const passwordError = document.getElementById('password-error');
+            const successMessage = document.getElementById('success-message');
+
+            usernameInput.addEventListener('input', function() {
+                if (usernameInput.value.trim() === '') {
+                    usernameError.style.display = 'block';
+                } else {
+                    usernameError.style.display = 'none';
+                }
+            });
+
+            passwordInput.addEventListener('input', function() {
+                if (passwordInput.value.trim() === '') {
+                    passwordError.style.display = 'block';
+                } else {
+                    passwordError.style.display = 'none';
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                let valid = true;
+                if (usernameInput.value.trim() === '') {
+                    usernameError.style.display = 'block';
+                    valid = false;
+                }
+                if (passwordInput.value.trim() === '') {
+                    passwordError.style.display = 'block';
+                    valid = false;
+                }
+                if (!valid) {
+                    event.preventDefault();
+                } else {
+                    successMessage.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <center>
+    <form action="{% url 'signin' %}" method="post">
+        {% csrf_token %}
+        <!-- form fields for username and password -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required style="margin: 15px;">
+        <span id="username-error" class="error">Username is required</span><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required style="margin: 15px;">
+        <span id="password-error" class="error">Password is required</span><br>
+        
+        <button type="submit" style="margin: 15px;">Sign In</button>
+        
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        
+        <p id="success-message" class="feedback">Form is submitting...</p>
+    </form>
+</center>
+</body>
+</html>
+
+
+{% endblock content %}
